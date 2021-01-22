@@ -8,13 +8,14 @@ export default {
     username: state => state.username,
   },
   actions: {
-    toggleAuth: (context) => {
-      context.commit('toggleAuthenticated')
+    login: ({ commit }, {username , password}) => {
+      commit('login', {username, password})
     }
   },
   mutations: {
-    toggleAuthenticated: (state) => {
-      state.isAuthenticated = !state.isAuthenticated
+    login: (state, {username}) => {
+      state.username = username;
+      state.isAuthenticated = true;
     }
   }
 }

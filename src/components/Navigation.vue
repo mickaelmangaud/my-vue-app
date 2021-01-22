@@ -1,11 +1,16 @@
 <template>
   <nav>
     <img src="../assets/logo.png" alt="menu logo" />
+    <div class="username">
+      {{
+        isAuthenticated ? "Connecté en tant que :" + username : "Non connecté"
+      }}
+    </div>
     <ul>
       <router-link to="/" class="link">Home</router-link>
       <router-link to="/posts" class="link">Posts</router-link>
       <router-link to="/about" class="link">About</router-link>
-      <!-- <div class="username">{{ isAuthenticated ? "" : "Welcome Mickael" }}</div> -->
+      <router-link to="/login" class="link">Login</router-link>
     </ul>
     <!-- <button @click="setAuth">Toggle Auth</button> -->
   </nav>
@@ -16,7 +21,7 @@ import { mapGetters, mapActions } from "vuex";
 
 export default {
   computed: {
-    ...mapGetters(["isAuthenticated"]),
+    ...mapGetters(["isAuthenticated", "username"]),
     ...mapActions(["toggleAuth"]),
   },
   methods: {
@@ -56,5 +61,9 @@ ul {
   text-transform: uppercase;
   text-decoration: none;
   color: #222;
+}
+
+.username {
+  align-self: center;
 }
 </style>
