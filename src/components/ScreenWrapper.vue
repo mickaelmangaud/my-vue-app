@@ -10,7 +10,9 @@ export default {};
 
 <style>
 main {
-  background-color: papayawhip;
-  height: calc(100vh - 70px);
+  background-color: #eee;
+  padding: 24px;
+  padding-top: 94px;
+  min-height: calc(100vh);
 }
 </style>

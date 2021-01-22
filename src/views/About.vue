@@ -1,7 +1,6 @@
 <template>
   <screen-wrapper>
     <h1>This is an about page</h1>
-    <text-component />
   </screen-wrapper>
 </template>
 
