@@ -6,7 +6,7 @@ import VuexPersistence from 'vuex-persist';
 
 const vuexLocal = new VuexPersistence({
   storage: window.localStorage
-})
+});
 
 Vue.use(Vuex);
 Vue.config.devtools = true;
@@ -17,4 +17,4 @@ export default new Vuex.Store({
     posts
   },
   plugins: [vuexLocal.plugin]
-})
+});

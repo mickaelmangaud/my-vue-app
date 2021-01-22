@@ -11,15 +11,13 @@ import ScreenWrapper from "@/components/ScreenWrapper.vue";
 export default {
   name: "Home",
   components: { ScreenWrapper },
+  data: () => ({
+    title: "",
+  }),
   methods: {
     changeTitle() {
       this.title = "le but n'étant pas de faire du css";
     },
-  },
-  data() {
-    return {
-      title: "",
-    };
   },
 };
 </script>

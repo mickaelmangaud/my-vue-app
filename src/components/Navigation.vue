@@ -1,21 +1,23 @@
 <template>
   <nav>
-    <router-link to="/"
-      ><img src="../assets/logo.png" alt="menu logo"
-    /></router-link>
+    <router-link to="/">
+      <img src="../assets/logo.png" alt="menu logo" />
+    </router-link>
+
     <div class="username">
-      {{
-        isAuthenticated ? "Connecté en tant que :" + username : "Non connecté"
-      }}
-      <button @click="logout()">Logout</button>
+      <div v-if="isAuthenticated">
+        <p>Connecté en tant que {{ username }}</p>
+        <button @click="logout()">Logout</button>
+      </div>
+      <p v-else>Non connecté</p>
     </div>
+
     <ul>
       <router-link to="/" class="link">Home</router-link>
       <router-link to="/posts" class="link">Posts</router-link>
       <router-link to="/about" class="link">About</router-link>
       <router-link to="/login" class="link">Login</router-link>
     </ul>
-    <!-- <button @click="setAuth">Toggle Auth</button> -->
   </nav>
 </template>
 

@@ -1,16 +1,22 @@
 <template>
   <main>
     <h1>LOGIN</h1>
-    <form @submit.prevent="login({ username, password })">
-      <input type="text" v-model="username" />
-      <input type="text" v-model="password" />
+
+    <form
+      v-if="!isAuthenticated"
+      @submit.prevent="login({ username, password })"
+    >
+      <input type="text" v-model="username" placeholder="username" />
+      <input type="text" v-model="password" placeholder="password" />
       <input type="submit" value="Connexion" />
     </form>
+
+    <p v-else>Vous êtes connecté</p>
   </main>
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 export default {
   name: "Login",
   methods: {
@@ -22,6 +28,7 @@ export default {
       password: "",
     };
   },
+  computed: mapGetters(["isAuthenticated"]),
 };
 </script>
 
