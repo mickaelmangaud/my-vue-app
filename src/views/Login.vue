@@ -4,7 +4,7 @@
 
     <form
       v-if="!isAuthenticated"
-      @submit.prevent="login({ username, password })"
+      @submit.prevent="goLogin({ username, password })"
     >
       <input type="text" v-model="username" placeholder="username" />
       <input type="text" v-model="password" placeholder="password" />
@@ -16,11 +16,15 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex";
+import { mapGetters } from "vuex";
 export default {
   name: "Login",
   methods: {
-    ...mapActions(["login"]),
+    goLogin({ username, password }) {
+      if (username.length > 0 && password) {
+        this.$store.dispatch("login", { username, password });
+      }
+    },
   },
   data() {
     return {
