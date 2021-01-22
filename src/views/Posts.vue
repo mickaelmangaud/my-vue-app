@@ -16,12 +16,8 @@ import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "Posts",
-  methods: {
-    ...mapActions(["fetchPosts", "deletePost"]),
-  },
-  computed: {
-    ...mapGetters(["posts"]),
-  },
+  methods: mapActions(["fetchPosts", "deletePost"]),
+  computed: mapGetters(["posts"]),
   created() {
     this.fetchPosts();
   },

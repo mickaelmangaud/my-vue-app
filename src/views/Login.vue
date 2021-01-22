@@ -17,22 +17,21 @@
 
 <script>
 import { mapGetters } from "vuex";
+
 export default {
   name: "Login",
+  data: () => ({
+    username: "",
+    password: "",
+  }),
+  computed: mapGetters(["isAuthenticated"]),
   methods: {
     goLogin({ username, password }) {
-      if (username.length > 0 && password) {
+      if (username && password) {
         this.$store.dispatch("login", { username, password });
       }
     },
   },
-  data() {
-    return {
-      username: "",
-      password: "",
-    };
-  },
-  computed: mapGetters(["isAuthenticated"]),
 };
 </script>
 

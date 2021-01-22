@@ -25,15 +25,8 @@
 import { mapGetters, mapActions } from "vuex";
 
 export default {
-  computed: {
-    ...mapGetters(["isAuthenticated", "username"]),
-  },
-  methods: {
-    setAuth() {
-      this.$store.dispatch("toggleAuth");
-    },
-    ...mapActions(["logout"]),
-  },
+  computed: mapGetters(["isAuthenticated", "username"]),
+  methods: mapActions(["logout"]),
 };
 </script>
 
