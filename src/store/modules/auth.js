@@ -21,7 +21,10 @@ export default {
         .catch(console.log);
 
     },
-    logout: ({ commit }) => commit('logout')
+    logout: ({ commit }) => {
+      firebase.auth().signOut();
+      commit('logout');
+    }
   },
   mutations: {
     login: (state, email) => {
@@ -29,7 +32,6 @@ export default {
       state.isAuthenticated = true;
     },
     logout: (state) => {
-      firebase.auth().signOut();
       state.email = '';
       state.isAuthenticated = false;
     }
