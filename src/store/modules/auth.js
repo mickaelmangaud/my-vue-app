@@ -1,21 +1,37 @@
+import firebase from 'firebase/app';
+import 'firebase/auth';
+
 export default {
   state: {
+    email: '',
     isAuthenticated: false,
-    username: '',
   },
   getters: {
     isAuthenticated: state => state.isAuthenticated,
-    username: state => state.username,
+    email: state => state.email,
   },
   actions: {
-    login: ({ commit }, {username , password}) => commit('login', {username, password}),
+    login: ({ commit }, { email, password }) => {
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(email, password)
+        .then(credentials => {
+          commit('login', credentials.user.email);
+        })
+        .catch(console.log);
+
+    },
     logout: ({ commit }) => commit('logout')
   },
   mutations: {
-    login: (state, {username}) => {
-      state.username = username;
+    login: (state, email) => {
+      state.email = email;
       state.isAuthenticated = true;
     },
-    logout: (state) => state.isAuthenticated = false
+    logout: (state) => {
+      firebase.auth().signOut();
+      state.email = '';
+      state.isAuthenticated = false;
+    }
   }
 }

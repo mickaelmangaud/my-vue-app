@@ -1,31 +1,32 @@
 <template>
   <nav>
     <router-link to="/">
-      <img src="../assets/logo.png" alt="menu logo" />
+      <img src="@/assets/logo.png" alt="menu logo" />
     </router-link>
 
     <div class="username">
       <div v-if="isAuthenticated">
-        <p>Connecté en tant que {{ username }}</p>
+        <p>Connecté en tant que {{ email }}</p>
         <button @click="logout()">Logout</button>
       </div>
       <p v-else>Non connecté</p>
     </div>
 
     <ul>
-      <router-link to="/" class="link">Home</router-link>
-      <router-link to="/posts" class="link">Posts</router-link>
-      <router-link to="/about" class="link">About</router-link>
-      <router-link to="/login" class="link">Login</router-link>
+      <RouterLink to="/" class="link">Home</RouterLink>
+      <RouterLink to="/posts" class="link">Posts</RouterLink>
+      <RouterLink to="/about" class="link">About</RouterLink>
+      <!-- <RouterLink v-if="!isAuthenticated" to="/signup" class="link">Signup</RouterLink> -->
+      <RouterLink v-if="!isAuthenticated" to="/signin" class="link">Signin</RouterLink>
     </ul>
   </nav>
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
-  computed: mapGetters(["isAuthenticated", "username"]),
+  computed: mapGetters(["isAuthenticated", 'email']),
   methods: mapActions(["logout"]),
 };
 </script>

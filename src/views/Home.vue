@@ -1,12 +1,13 @@
 <template>
-  <screen-wrapper>
+  <ScreenWrapper>
     <p>VueJs Test très moche mais c'est pas grave ! {{ title }}</p>
-    <button @click="changeTitle">Click</button>
-  </screen-wrapper>
+    <button @click="insertData">Click</button>
+  </ScreenWrapper>
 </template>
 
 <script>
 import ScreenWrapper from "@/components/ScreenWrapper.vue";
+import { db } from "../main";
 
 export default {
   name: "Home",
@@ -15,8 +16,13 @@ export default {
     title: "",
   }),
   methods: {
-    changeTitle() {
-      this.title = "le but n'étant pas de faire du css";
+    async insertData() {
+      const docRef = db.collection("posts").doc("fsdfd");
+      await docRef.set({
+        first: "Ada",
+        last: "Lovelace",
+        born: 1815,
+      });
     },
   },
 };
